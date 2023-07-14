@@ -1,54 +1,35 @@
-<nav class="bg-white border-gray-200 py-2.5">
-    <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-        <a href="#" class="flex items-center">
-            <img src="https://www.svgrepo.com/show/499962/music.svg" class="h-6 mr-3 sm:h-9" alt="Logo">
-            <span class="self-center text-xl font-semibold whitespace-nowrap">Music Lover</span>
-        </a>
-        <div class="flex items-center lg:order-2">
-            <div class="hidden mt-2 mr-4 sm:inline-block">
-                <span></span>
+<nav class="p-4 text-white shadow-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+    <div class="container mx-auto md:flex md:justify-between md:items-center">
+        <div class="flex items-center justify-between">
+            <div>
+                <a href="#" class="text-2xl font-bold transition-colors duration-200 md:text-3xl hover:text-gray-100">
+                    <img src="https://www.svgrepo.com/show/499962/music.svg" class="inline-block w-12 h-12 mr-2" alt="Logo">
+                    <span>Music Lover</span>
+                </a>
             </div>
 
-            <a href="#"
-               class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 focus:outline-none">Download</a>
-
-            <button data-collapse-toggle="mobile-menu-2" type="button"
-                    class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                    aria-controls="mobile-menu-2" aria-expanded="true">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                          clip-rule="evenodd"></path>
-                </svg>
-                <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                </svg>
-            </button>
+            <div class="md:hidden">
+                <button type="button" class="text-white hover:text-gray-200 focus:outline-none focus:text-gray-200" aria-label="toggle menu">
+                    <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                        <path fill-rule="evenodd" d="M4 5a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zM4 11a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1zM4 17a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1z"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                <li>
-                    <a href="{{ url('/') }}"
-                       class="nav-menu {{ request()->is('/') ? 'active' : '' }}">
-                        Welcome
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('songs.index') }}"
-                       class="nav-menu {{ Route::currentRouteName() === 'songs.index' ? 'active' : '' }}">
-                        Song Playlist
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('about.index') }}"
-                       class="nav-menu {{ Route::currentRouteName() === 'about.index' ? 'active' : '' }}">
-                        About
-                    </a>
-                </li>
-            </ul>
+
+        <div class="items-center md:flex">
+            <div class="flex flex-col mt-2 text-lg md:flex-row md:mt-0 md:mx-6">
+                <a href="{{ url('/') }}" class="p-2 duration-300 rounded mx-2transition-colors hover:bg-purple-700 hover:text-white">Welcome</a>
+                <a href="{{ route('songs.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-purple-700 hover:text-white">Song Playlist</a>
+                <a href="{{ route('about.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-purple-700 hover:text-white">About</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#" class="relative px-4 py-2 text-sm text-purple-700 transition-colors duration-300 bg-white rounded hover:bg-gray-100 focus:outline-none">
+                    Download
+                    <span></span>
+                </a>
+            </div>
         </div>
     </div>
 </nav>
