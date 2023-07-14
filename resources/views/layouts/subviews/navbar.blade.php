@@ -1,4 +1,4 @@
-<nav class="p-4 text-white shadow-md bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+<nav class="p-4 text-white shadow-md bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500">
     <div class="container mx-auto md:flex md:justify-between md:items-center">
         <div class="flex items-center justify-between">
             <div>
@@ -19,13 +19,13 @@
 
         <div class="items-center md:flex">
             <div class="flex flex-col mt-2 text-lg md:flex-row md:mt-0 md:mx-6">
-                <a href="{{ url('/') }}" class="p-2 duration-300 rounded mx-2transition-colors hover:bg-purple-700 hover:text-white">Welcome</a>
-                <a href="{{ route('songs.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-purple-700 hover:text-white">Song Playlist</a>
-                <a href="{{ route('about.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-purple-700 hover:text-white">About</a>
+                <a href="{{ url('/') }}" class="p-2 duration-300 rounded mx-2transition-colors hover:bg-gray-900 hover:text-white">Welcome</a>
+                <a href="{{ route('songs.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Song Playlist</a>
+                <a href="{{ route('about.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">About</a>
             </div>
 
             <div class="hidden md:block">
-                <a href="#" class="relative px-4 py-2 text-sm text-purple-700 transition-colors duration-300 bg-white rounded hover:bg-gray-100 focus:outline-none">
+                <a href="#" class="relative px-4 py-2 text-sm text-gray-700 transition-colors duration-300 bg-white rounded hover:bg-gray-100 focus:outline-none">
                     Download
                     <span></span>
                 </a>

@@ -13,8 +13,10 @@
 <body>
     @include('layouts.subviews.navbar')
 
-    <main class="min-h-screen p-4 mt-2 bg-gray-100">
+    <main class="min-h-screen p-4 bg-gray-100 ">
+      <section class="container mx-auto">
         @yield('content')
+      </section>
     </main>
 </body>
 

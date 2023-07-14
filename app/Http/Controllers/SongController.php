@@ -15,7 +15,8 @@ class SongController extends Controller
                 'duration' => [
                     'minutes' => 3,
                     'seconds' => 20
-                ]
+                ],
+                'youtube_id' => 'v_4fljfr2r4'
             ],
             [
                 'title' => 'Song for You',
@@ -24,7 +25,8 @@ class SongController extends Controller
                 'duration' => [
                     'minutes' => 2,
                     'seconds' => 48
-                ]
+                ],
+                'youtube_id' => 'TP8kY5CF2Dg'
             ],
             [
                 'title' => "คำถามซึ่งไร้คนตอบ",
@@ -33,7 +35,8 @@ class SongController extends Controller
                 'duration' => [
                     'minutes' => 4,
                     'seconds' => 29
-                ]
+                ],
+                'youtube_id' => 'mVkMDcjSpMQ'
             ],
         ]);
 
