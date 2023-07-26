@@ -21,6 +21,7 @@
             <div class="flex flex-col mt-2 text-lg md:flex-row md:mt-0 md:mx-6">
                 <a href="{{ url('/') }}" class="p-2 duration-300 rounded mx-2transition-colors hover:bg-gray-900 hover:text-white">Welcome</a>
                 <a href="{{ route('songs.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Song Playlist</a>
+                <a href="{{ route('artists.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Artists</a>
                 <a href="{{ route('about.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">About</a>
             </div>
 
