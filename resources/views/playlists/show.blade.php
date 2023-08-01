@@ -22,7 +22,7 @@
     </div>
 
     @foreach ($playlist->songs as $song)
-        <div class="mb-4 bg-white rounded shadow-md p-6">
+        <div class="mb-4 bg-white shadow-md p-6 rounded-xl">
             <h3 class="text-xl font-bold mb-2">{{ $song->title }}</h3>
             <p class="text-gray-700">Artist: {{ $song->artist->name }}</p>
         </div>

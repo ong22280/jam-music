@@ -16,7 +16,7 @@ class PlaylistController extends Controller
     {
         // by user id
         $user = User::find(1);
-        $playlists = Playlist::where('user_id', $user->id)->paginate(10);
+        $playlists = Playlist::where('user_id', $user->id)->paginate(6);
 
         // by user model
         // $user = User::find(1);
