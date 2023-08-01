@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlaylistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,18 @@ Route::get('/about', [AboutController::class, 'index'])
 
 Route::get('/songs', [SongController::class, 'index'])
     ->name('songs.index');
+
+Route::resource('/playlists', PlaylistController::class);
+
+Route::get('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])
+    ->name('playlists.songs.add');
+
+Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'storeSongPlaylist'])
+    ->name('playlists.songs.store');
+
+Route::get('/playlists/{playlist}/songs/{song}', [PlaylistController::class, 'removeSong'])
+    ->name('playlists.songs.remove');
+
 
 Route::resource('/artists', ArtistController::class);
 
