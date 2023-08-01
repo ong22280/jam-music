@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ArtistController;
@@ -43,6 +44,17 @@ Route::get('/artists/{artist}/songs', [ArtistController::class, 'createSong'])
     
 Route::post('/artists/{artist}/songs', [ArtistController::class, 'storeSong'])
     ->name('artists.songs.store');
+
+
+Route::put('/tasks/{task}/move', [TaskController::class, 'move'])->name('tasks.move');
+
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

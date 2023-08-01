@@ -23,6 +23,7 @@
                 <a href="{{ route('songs.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Song Playlist</a>
                 <a href="{{ route('artists.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Artists</a>
                 <a href="{{ route('about.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">About</a>
+                <a href="{{ route('tasks.index') }}" class="p-2 mx-2 transition-colors duration-300 rounded hover:bg-gray-900 hover:text-white">Task</a>
             </div>
 
             <div class="hidden md:block">
