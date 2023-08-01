@@ -18,6 +18,6 @@ class ArtistSeeder extends Seeder
             return;
         }
 
-        Artist::factory()->count(20)->create();
+        Artist::factory()->count(10)->create();
     }
 }

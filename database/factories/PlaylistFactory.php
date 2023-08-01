@@ -18,7 +18,7 @@ class PlaylistFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'accessibility' => $this->faker->randomElement(['public', 'private']),
+            'accessibility' => $this->faker->randomElement(['PUBLIC', 'PRIVATE']),
             'user_id' => $this->faker->numberBetween(1, 1),
         ];
     }

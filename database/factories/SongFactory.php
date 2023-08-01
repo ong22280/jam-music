@@ -18,10 +18,8 @@ class SongFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'artist' => $this->faker->name(),
-            'album' => $this->faker->sentence(3),
+            'artist_id' => $this->faker->numberBetween(1, 10),
             'duration' => $this->faker->numberBetween(120, 600),
-            'youtube_id' => $this->faker->regexify('[a-zA-Z0-9_-]{11}'),
         ];
     }
 }

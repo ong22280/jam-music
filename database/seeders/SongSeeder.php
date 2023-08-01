@@ -19,6 +19,6 @@ class SongSeeder extends Seeder
             return;
         }
 
-        Song::factory()->count(1000)->create();
+        Song::factory()->count(20)->create();
     }
 }

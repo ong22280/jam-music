@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class SongController extends Controller
 {
     public function index() {
-        $songs = Song::paginate(10);
+        $songs = Song::paginate(3);
 
         return view('songs.index', [
             'title' => 'Song Playlist',

@@ -28,7 +28,7 @@
             @endforeach
         </ul>
     </div>
-    <div class="shadow-2xl">
+    <div>
     {{ $songs->links() }}
     </div>
 @endsection

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Auth\User;
 
 class UserSeeder extends Seeder
 {
@@ -18,6 +18,6 @@ class UserSeeder extends Seeder
             return;
         }
 
-        User::factory()->count(20)->create();
+        User::factory()->count(1)->create();
     }
 }
