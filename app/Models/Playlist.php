@@ -26,4 +26,48 @@ class Playlist extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopePublicList($query)
+    {
+        return $this->where('accessibility', PlaylistAccessibility::PUBLIC);
+    }
+
+    public function scopePrivateList($query)
+    {
+        return $this->where('accessibility', PlaylistAccessibility::PRIVATE);
+    }
+
+    public function scopeOfUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+    public function scopeFilterByAccessibility($query, $accessibility)
+    {
+        return $query->where('accessibility', $accessibility);
+    }
+
+    public function isPrivate(): bool
+    {
+        return $this->accessibility === PlaylistAccessibility::PRIVATE;
+    }
+
+    public function scopeWithNameLike($query, $name)
+    {
+        return $query->where('name', 'like', "%{$name}%");
+    }
+
+    public function scopeSortedBy($query, $sortOption)
+    {
+        switch ($sortOption) {
+            case 'oldest':
+                return $query->orderBy('created_at', 'asc');
+            case 'name_asc':
+                return $query->orderBy('name', 'asc');
+            case 'name_desc':
+                return $query->orderBy('name', 'desc');
+            case 'latest':
+            default:
+                return $query->orderBy('created_at', 'desc');
+        }
+    }
 }

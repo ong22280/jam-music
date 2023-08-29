@@ -10,10 +10,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-gray-100 h-screen">
     @include('layouts.subviews.navbar')
 
-    <main class="min-h-screen p-4 bg-gray-100 ">
+    <main class="p-4 ">
       <section class="container mx-auto">
         @yield('content')
       </section>

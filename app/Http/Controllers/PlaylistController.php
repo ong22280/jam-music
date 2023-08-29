@@ -2,25 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enums\PlaylistAccessibility;
 use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Providers\PlaylistPolicy;
 
 class PlaylistController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // by user id
-        $user = User::find(1);
-        $playlists = Playlist::where('user_id', $user->id)->paginate(6);
+        Gate::authorize('viewAny', Playlist::class);
 
-        // by user model
-        // $user = User::find(1);
-        // $playlists = $user->playlists()->paginate(10);
+        // if (! Gate::allows('viewAny', Playlist::class)) {
+        //     return redirect()->to('/');
+        // }
+
+        $user = Auth::user();
+
+        // $playlists = Playlist::with('songs')->whereUserId($user->id)->get();
+        // $query = Playlist::where('user_id', $user->id);
+        $query = Playlist::with('songs')->ofUser($user->id);
+
+        if ($request->has('accessibility') && in_array($request->accessibility, ['PUBLIC', 'PRIVATE'])) {
+            $query->filterByAccessibility($request->accessibility);
+        }
+
+
+        if ($request->has('search')) {
+            $query->withNameLike($request->search);
+        }
+
+        $query->sortedBy($request->input('sort', 'latest'));  // Default to 'latest' if not provided
+
+        $playlists = $query->paginate(6);
 
         return view('playlists.index', [
             'playlists' => $playlists,
@@ -33,6 +59,7 @@ class PlaylistController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Playlist::class);
         return view('playlists.create');
     }
 
@@ -41,16 +68,24 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('create', Playlist::class);
+
         $request->validate([
             'name' => ['required', 'min:3', 'max:255'],
             'accessibility' => ['required', 'in:PUBLIC,PRIVATE']
         ]);
-        $user = User::find(1);
+        // $user = Auth::user();
+        // $playlist = new Playlist();
+        // $playlist->name = $request->name;
+        // $playlist->accessibility = $request->accessibility;
+        // $playlist->user_id = $user->id;
+        // $playlist->save();
+
         $playlist = new Playlist();
-        $playlist->name = $request->name;
-        $playlist->accessibility = $request->accessibility;
-        $playlist->user_id = $user->id;
-        $playlist->save();
+        $playlist->accessibility = $request->get('accessibility');
+        $playlist->name = $request->get('name');
+        $request->user()->playlists()->save($playlist);
+
         return redirect()->route('playlists.index');
     }
 
@@ -69,6 +104,8 @@ class PlaylistController extends Controller
      */
     public function edit(Playlist $playlist)
     {
+        Gate::authorize('update', $playlist);
+
         return view('playlists.edit', [
             'playlist' => $playlist
         ]);
@@ -79,6 +116,8 @@ class PlaylistController extends Controller
      */
     public function update(Request $request, Playlist $playlist)
     {
+        Gate::authorize('update', $playlist);
+
         $request->validate([
             'name' => ['required', 'min:3', 'max:255'],
             'accessibility' => ['required', 'in:PUBLIC,PRIVATE']
@@ -128,5 +167,4 @@ class PlaylistController extends Controller
         $playlist->songs()->detach($song->id);
         return redirect()->route('playlists.show', $playlist->id);
     }
-
 }

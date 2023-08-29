@@ -38,23 +38,14 @@ Route::get('/about', [AboutController::class, 'index'])
 Route::get('/songs', [SongController::class, 'index'])
     ->name('songs.index');
 
-Route::resource('/playlists', PlaylistController::class);
 
-Route::get('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])
-    ->name('playlists.songs.add');
-
-Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'storeSongPlaylist'])
-    ->name('playlists.songs.store');
-
-Route::get('/playlists/{playlist}/songs/{song}', [PlaylistController::class, 'removeSong'])
-    ->name('playlists.songs.remove');
 
 
 Route::resource('/artists', ArtistController::class);
 
 Route::get('/artists/{artist}/songs', [ArtistController::class, 'createSong'])
     ->name('artists.songs.create');
-    
+
 Route::post('/artists/{artist}/songs', [ArtistController::class, 'storeSong'])
     ->name('artists.songs.store');
 
@@ -67,6 +58,18 @@ Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.upda
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/playlists', PlaylistController::class);
+
+    Route::get('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])
+        ->name('playlists.songs.add');
+
+    Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'storeSongPlaylist'])
+        ->name('playlists.songs.store');
+
+    Route::get('/playlists/{playlist}/songs/{song}', [PlaylistController::class, 'removeSong'])
+        ->name('playlists.songs.remove');
+});
 
 
 // Route::get('/dashboard', function () {
@@ -79,4 +82,4 @@ Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.e
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

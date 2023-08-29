@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArtistController extends Controller
 {
@@ -25,6 +26,7 @@ class ArtistController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Artist::class);
         return view('artists.create');
     }
 
@@ -33,12 +35,25 @@ class ArtistController extends Controller
      */
     public function store(Request $request) // Dependency Injection
     {
+        Gate::authorize('create', Artist::class);
+
+        $request->validate([
+            'name' => ['required', 'min:3', 'max:255', 'unique:artists,name'],
+        ]);
+
         $artist_name = $request->get('name');
         if ($artist_name == null) {
             return redirect()->back();
         }
         $artist = new Artist();
         $artist->name = $artist_name;
+
+        $fileName = 'desired_filename.jpg';
+        if ($request->hasFile('image_path')) {
+            $path = $request->file('image_path')->storeAs('artist_images', $fileName, 'public');
+            $artist->image_path = $path;
+        }
+        
         $artist->save();
         return redirect()->route('artists.index');
     }
@@ -110,6 +125,11 @@ class ArtistController extends Controller
      */
     public function storeSong(Request $request, Artist $artist)
     {
+        $request->validate([
+            'title' => ['required', 'min:4', 'max:255'],
+            'duration' => ['required', 'integer', 'min:10'],
+        ]);
+
         $song = new Song();
         $song->title = $request->get('title');
         $song->duration = $request->get('duration');
