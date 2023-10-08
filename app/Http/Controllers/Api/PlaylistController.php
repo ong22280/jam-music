@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
 {
+    protected $playlistRepository;
+
+    public function __construct() {
+        // $this->playlistRepository = new PlaylistRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */

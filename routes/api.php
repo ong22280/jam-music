@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ArtistController;
+use App\Http\Controllers\LineBotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,6 @@ Route::get("/", function () {
     return ['hello' => 'world'];
 });
 
+Route::post('/linebot/callback', [LineBotController::class, 'callback']);
 // RESTful API
 Route::apiResource("/artist", ArtistController::class);
