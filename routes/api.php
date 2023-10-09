@@ -46,6 +46,7 @@ Route::get("/", function () {
     return ['hello' => 'world'];
 });
 
-Route::post('/linebot/callback', [LineBotController::class, 'callback']);
+// Route::post('/linebot/callback', [LineBotController::class, 'callback']);
 // RESTful API
 Route::apiResource("/artist", ArtistController::class);
+Route::apiResource("/playlist", App\Http\Controllers\Api\PlaylistController::class);

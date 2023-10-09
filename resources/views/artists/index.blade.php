@@ -1,17 +1,15 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class=" mx-auto mt-8 overflow-hidden bg-white rounded-lg shadow-lg mb-5">
-        <div class="px-6 py-4 bg-gray-700 rounded-t-lg flex justify-between">
+    <div class="mx-auto mt-8 mb-5 overflow-hidden bg-white rounded-lg shadow-lg ">
+        <div class="flex justify-between px-6 py-4 bg-gray-700 rounded-t-lg">
             <h2 class="text-2xl font-semibold text-white">Artist List</h2>
             @can('create', App\Models\Artist::class)
             <a href="{{ route('artists.create') }}"
-                class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded text-center">Create New Artist
+                class="px-4 py-2 font-bold text-center text-black bg-white rounded hover:bg-gray-200">Create New Artist
             </a>
             @endcan
         </div>
-
-
 
         <ul class="divide-y divide-gray-200">
             @foreach ($artists as $artist)

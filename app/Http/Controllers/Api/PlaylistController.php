@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
 use Illuminate\Http\Request;
+use App\Repositories\PlaylistRepository;
 
 class PlaylistController extends Controller
 {
+
     protected $playlistRepository;
 
-    public function __construct() {
-        // $this->playlistRepository = new PlaylistRepository;
+    public function __construct(PlaylistRepository $playlistRepository)
+    {
+        $this->playlistRepository = $playlistRepository;
     }
 
     /**
@@ -20,7 +23,7 @@ class PlaylistController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $playlists = Playlist::where('user_id', $user->id)->get();
+        $playlists = $this->playlistRepository->getAllOfUser($user->id);
         return $playlists;
     }
 
